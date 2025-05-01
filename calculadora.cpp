@@ -46,6 +46,7 @@ struct Resultado2x2{
 
 void sistema2x2();
 void sistema3x3();
+void sumarestamatrices();
 char PosToChar(int numero);
 
 
@@ -59,6 +60,7 @@ int main(){
 
 	//sistema3x3(); test
 	//sistema2x2(); test
+	//sumarestamatrices(); Funcionando correctamente
 
 	system("pause");
 	return 0;
@@ -74,7 +76,69 @@ int main(){
 
 
 
-// ----- Punto 2 - Operaciones con Matrices
+// ----- Punto 3 - Operaciones con Matrices
+
+void sumarestamatrices(){
+	//Variables
+	int limite0=0, limite1=0, op=0;
+
+	//Aclaracion
+	cout<<"La suma o resta de matrices, debe ser necesariamente con matrices de dimensiones identicas"<<endl;
+	//Ingreso de datos
+	cout<<"Seleccione operacion."<<endl;
+	cout<<"1. Suma"<<endl;
+	cout<<"2. Resta"<<endl;
+	cin>>op;
+
+	cout<<"Ingrese la dimension de las matrices (filas)"<<endl;
+	cin>>limite0;
+	cout<<"Ingrese la dimension de las matrices (columnas)"<<endl;
+	cin>>limite1;
+	
+	float matriz1[limite0][limite1];
+	float matriz2[limite0][limite1];
+	float matrizres[limite0][limite1];
+
+	cout<<"Ingreso de datos de la primer matriz"<<endl;
+	for(int j=0; j<limite0; j++){
+		for(int i=0; i<limite1; i++){
+			cout<<"Ingrese elemento "<<i<<" de la columna "<<j<<endl;
+			cin>>matriz1[j][i]; 
+		}
+	}
+	cout<<"Ingreso de datos de la segunda matriz"<<endl;
+	for(int j=0; j<limite0; j++){
+		for(int i=0; i<limite1; i++){
+			cout<<"Ingrese elemento "<<i<<" de la fila "<<j<<endl;
+			cin>>matriz2[j][i]; 
+		}
+
+	}
+
+	//Proceso matematico
+	if(op==1){
+		for(int j=0; j<limite0;j++){
+			for(int i=0; i<limite1;i++){
+				matrizres[j][i]=matriz1[j][i]+matriz2[j][i];
+			}
+		}
+	}else{
+		for(int j=0; j<limite0;j++){
+			for(int i=0; i<limite1;i++){
+				matrizres[j][i]=matriz1[j][i]-matriz2[j][i];
+			}
+		}
+	}
+
+	//Resultado
+	cout<<"El resultado es:"<<endl;
+	for(int j=0; j<limite0;j++){
+		for(int i=0; i<limite1; i++){
+			cout<<matrizres[j][i]<<"   ";
+		}
+		cout<<endl;
+	}
+}
 
 
 
