@@ -62,7 +62,7 @@ int main(){
 	//sistema3x3(); test
 	//sistema2x2(); test
 	//sumarestamatrices(); Funcionando correctamente
-	multiplicarmatrices();
+	//multiplicarmatrices(); Funcionando correctamente
 
 	system("pause");
 	return 0;
@@ -102,19 +102,18 @@ void sumarestamatrices(){
 	float matrizres[limite0][limite1];
 
 	cout<<"Ingreso de datos de la primer matriz"<<endl;
-	for(int j=0; j<limite0; j++){
-		for(int i=0; i<limite1; i++){
+	for(int i=0; i<limite0; i++){
+		for(int j=0; j<limite1; j++){
 			cout<<"Ingrese elemento "<<i<<" de la columna "<<j<<endl;
-			cin>>matriz1[j][i]; 
+			cin>>matriz1[i][j]; 
 		}
 	}
 	cout<<"Ingreso de datos de la segunda matriz"<<endl;
-	for(int j=0; j<limite0; j++){
-		for(int i=0; i<limite1; i++){
-			cout<<"Ingrese elemento "<<i<<" de la fila "<<j<<endl;
-			cin>>matriz2[j][i]; 
+	for(int i=0; i<limite0; i++){
+		for(int j=0; j<limite1; j++){
+			cout<<"Ingrese elemento "<<i<<" de la columna "<<j<<endl;
+			cin>>matriz1[i][j]; 
 		}
-
 	}
 
 	//Proceso matematico
@@ -143,6 +142,45 @@ void sumarestamatrices(){
 }
 
 
+void multiplicarporescalar(){
+	//Variables
+	int limite0=0, limite1=0, esc=0;
+	//Aclaracion
+	//Ingreso de datos
+	cout<<"Ingrese la dimension de las matriz (filas)"<<endl;
+	cin>>limite0;
+	cout<<"Ingrese la dimension de las matriz (columnas)"<<endl;
+	cin>>limite1;
+	vector<vector<float>> matriz1(limite0, vector<float>(limite1));
+
+	cout<<"Ingrese el numero escalar"<<endl;
+	cin>>esc;
+
+	cout<<"Ingreso de datos de la matriz"<<endl;
+	for(int i=0; i<limite0; i++){
+		for(int j=0; j<limite1; j++){
+			cout<<"Ingrese elemento "<<i<<" de la columna "<<j<<endl;
+			cin>>matriz1[i][j]; 
+		}
+	}
+	//Proceso matematico
+	for(int j=0; j<limite0;j++){
+		for(int i=0; i<limite1;i++){
+			matriz1[j][i]=matriz1[j][i]*esc;
+		}
+	}
+	//Resultado
+	cout<<"El resultado es:"<<endl;
+	for(int j=0; j<limite0;j++){
+		for(int i=0; i<limite1; i++){
+			cout<<matriz1[j][i]<<"   ";
+		}
+		cout<<endl;
+	}
+}
+
+
+
 void multiplicarmatrices(){
 	//Variables
 	int limite0=0, limite1=0, op=0,limite2=0,limite3=0;
@@ -151,7 +189,6 @@ void multiplicarmatrices(){
 	cout<<"El número de columnas de la primera matriz debe ser igual al numero de filas de la segunda matriz"<<endl;
 	//Ingreso de datos
 	
-
 	cout<<"Ingrese la dimension de la matriz 1 (filas)"<<endl;
 	cin>>limite0;
 	cout<<"Ingrese la dimension de la matriz 1 (columnas)"<<endl;
