@@ -47,7 +47,9 @@ struct Resultado2x2{
 void sistema2x2();
 void sistema3x3();
 void sumarestamatrices();
+void multiplicarporescalar();
 void multiplicarmatrices();
+void multiplicarporescalarv();
 char PosToChar(int numero);
 
 
@@ -62,7 +64,9 @@ int main(){
 	//sistema3x3(); test
 	//sistema2x2(); test
 	//sumarestamatrices(); Funcionando correctamente
+	//multiplicarporescalar(); Funcionando correctamente
 	//multiplicarmatrices(); Funcionando correctamente
+	//multiplicarporescalarv(); Funcionando correctamente
 
 	system("pause");
 	return 0;
@@ -240,6 +244,35 @@ void multiplicarmatrices(){
 	}
 }
 
+
+
+void multiplcarporescalarv(){
+	//Variables
+	int limite0=0, limite1=0, esc=0;
+	//Aclaracion
+	//Ingreso de datos
+	cout<<"Ingrese la dimension del vector"<<endl;
+	cin>>limite0;
+	vector<float> vector(limite0);
+
+	cout<<"Ingrese el numero escalar"<<endl;
+	cin>>esc;
+
+	cout<<"Ingreso de datos de la matriz"<<endl;
+	for(int i=0; i<limite0; i++){
+			cout<<"Ingrese elemento "<<i<<endl;
+			cin>>vector[i]; 
+	}
+	//Proceso matematico
+	for(int j=0; j<limite0;j++){
+			vector[j]=vector[j]*esc;
+	}
+	//Resultado
+	cout<<"El resultado es:"<<endl;
+	for(int j=0; j<vector.size();j++){
+			cout<<vector[j]<<", ";
+	}
+}
 
 
 // ----- Punto 4 - Sistemas de ecuación.
