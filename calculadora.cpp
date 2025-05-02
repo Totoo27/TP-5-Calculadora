@@ -47,6 +47,7 @@ struct Resultado2x2{
 void sistema2x2();
 void sistema3x3();
 void sumarestamatrices();
+void multiplicarmatrices();
 char PosToChar(int numero);
 
 
@@ -61,6 +62,7 @@ int main(){
 	//sistema3x3(); test
 	//sistema2x2(); test
 	//sumarestamatrices(); Funcionando correctamente
+	multiplicarmatrices();
 
 	system("pause");
 	return 0;
@@ -134,6 +136,67 @@ void sumarestamatrices(){
 	cout<<"El resultado es:"<<endl;
 	for(int j=0; j<limite0;j++){
 		for(int i=0; i<limite1; i++){
+			cout<<matrizres[j][i]<<"   ";
+		}
+		cout<<endl;
+	}
+}
+
+
+void multiplicarmatrices(){
+	//Variables
+	int limite0=0, limite1=0, op=0,limite2=0,limite3=0;
+
+	//Aclaracion
+	cout<<"El número de columnas de la primera matriz debe ser igual al numero de filas de la segunda matriz"<<endl;
+	//Ingreso de datos
+	
+
+	cout<<"Ingrese la dimension de la matriz 1 (filas)"<<endl;
+	cin>>limite0;
+	cout<<"Ingrese la dimension de la matriz 1 (columnas)"<<endl;
+	cin>>limite1;
+	cout<<"Ingrese la dimension de la matriz 2 (filas)"<<endl;
+	cin>>limite2;
+	cout<<"Ingrese la dimension de la matriz 2 (columnas)"<<endl;
+	cin>>limite3;
+	
+	vector<vector<float>> matriz1(limite0, vector<float>(limite1));
+    vector<vector<float>> matriz2(limite2, vector<float>(limite3));
+    vector<vector<float>> matrizres(limite0, vector<float>(limite3, 0.0f));
+	if(limite1!=limite2){
+		cout<<"Dimensiones no validas"<<endl;
+		return;
+	}
+
+	cout<<"Ingreso de datos de la primer matriz"<<endl;
+	for(int i=0; i<limite0; i++){
+		for(int j=0; j<limite1; j++){
+			cout<<"Ingrese elemento "<<i<<" de la columna "<<j<<endl;
+			cin>>matriz1[i][j]; 
+		}
+	}
+	cout<<"Ingreso de datos de la segunda matriz"<<endl;
+	for(int i=0; i<limite2; i++){
+		for(int j=0; j<limite3; j++){
+			cout<<"Ingrese elemento "<<i<<" de la columna "<<j<<endl;
+			cin>>matriz2[i][j]; 
+		}
+
+	}
+	//Proceso matematico
+		for(int i=0; i<limite0;i++){
+			for(int j=0; j<limite3;j++){
+				for(int k=0; k<limite1; k++){
+					matrizres[i][j]+=matriz1[i][k]*matriz2[k][j];
+				}
+			}
+		}
+
+	//Resultado
+	cout<<"El resultado es:"<<endl;
+	for(int j=0; j<limite0;j++){
+		for(int i=0; i<limite3; i++){
 			cout<<matrizres[j][i]<<"   ";
 		}
 		cout<<endl;
