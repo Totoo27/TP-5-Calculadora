@@ -15,6 +15,7 @@ Gennuso Santino.
 #include <iomanip>
 #include <vector>
 #include <string>
+#include <limits>
 
 
 using namespace std;
@@ -32,6 +33,14 @@ struct Resultado2x2{
 // FUNCIONES PROTOTIPADOS
 
 string floatLimit(float numero);
+
+// ----- Menus
+
+int menu();
+int menuOperaciones();
+int menuVectores();
+int menuMatrices();
+int menuSistemas();
 
 // ----- Punto 1 - Operaciones Básicas
 
@@ -61,7 +70,142 @@ int main(){
 
 	// Variables
 
+	bool terminado = false;
+
 	// Proceso
+
+	do{
+		switch(menu()){
+
+		case 1:
+			switch(menuOperaciones()){
+
+			case 1:
+				break;
+
+			case 2:
+
+				break;
+
+			case 3:
+
+				break;
+
+			case 4:
+
+				break;
+
+			case 5:
+
+				break;
+
+			case 6:
+
+				break;
+
+			case 7:
+				// Volver
+				break;
+
+			default:
+				cout<<"Esa no es una opcion valida."<<endl;
+			}
+			break;
+
+		case 2:
+			switch(menuVectores()){
+
+			case 1:
+
+				break;
+
+			case 2:
+
+				break;
+
+			case 3:
+
+				break;
+
+			case 4:
+
+				break;
+
+			case 5:
+				// Volver
+				break;
+
+			default:
+				cout<<"Esa no es una opcion valida."<<endl;
+			}
+			break;
+
+		case 3:
+			switch(menuMatrices()){
+
+			case 1:
+				sumarestamatrices();
+				break;
+
+			case 2:
+				multiplicarporescalar();
+				break;
+
+			case 3:
+				multiplicarmatrices();
+				break;
+
+			case 4:
+
+				break;
+
+			case 5:
+
+				break;
+
+			case 6:
+
+				break;
+
+			case 7:
+				// Volver
+				break;
+
+			default:
+				cout<<"Esa no es una opcion valida."<<endl;
+			}
+			break;
+
+		case 4:
+			switch(menuSistemas()){
+			case 1:
+				sistema2x2();
+				break;
+
+			case 2:
+				sistema3x3();
+				break;
+
+			case 3:
+				// Volver
+				break;
+
+			default:
+				cout<<"Esa no es una opcion valida."<<endl;
+			}
+			break;
+
+		case 5:
+			terminado = true;
+			cout<<"Sistema finalizado.";
+			break;
+
+		default:
+			cout<<"Esa no es una opcion valida."<<endl;
+
+		}
+
+	}while(!terminado);
 
 	//sistema3x3(); Funcionando correctamente
 	//sistema2x2(); Funcionando correctamente
@@ -89,6 +233,121 @@ string floatLimit(float numero) {
     }
 
     return num;
+}
+
+// ----- Menus
+
+int menu(){
+
+	int opcion;
+
+	cout<<"----- MENU -----"<<endl<<endl;
+	cout<<"1. Operaciones"<<endl<<"2. Operaciones con Vectores"<<endl<<"3. Operaciones con Matrices"<<endl<<"4. Sistemas de Ecuacion"<<endl<<"5. Salir"<<endl<<"Opcion: ";
+	cin>>opcion;
+
+
+	// Detectar caracter
+	if(cin.fail()){
+
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		return -1;
+
+	} else{
+
+		return opcion;
+
+	}
+
+}
+
+int menuOperaciones(){
+
+	int opcion;
+
+	cout<<"----- MENU OPERACIONES -----"<<endl<<endl;
+	cout<<"1. Suma"<<endl<<"2. Resta"<<endl<<"3. Multiplicacion"<<endl<<"4. Division"<<endl<<"5. Potencia"<<endl<<"6. Raiz"<<endl<<"7. Atras"<<endl<<"Opcion: ";
+	cin>>opcion;
+
+
+	// Detectar caracter
+	if(cin.fail()){
+
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		return -1;
+
+	} else{
+
+		return opcion;
+
+	}
+}
+
+int menuVectores(){
+	int opcion;
+
+	cout<<"----- MENU VECTORES -----"<<endl<<endl;
+	cout<<"1. Suma y Resta"<<endl<<"2. Multiplicacion por Escalar"<<endl<<"3. Producto Escalar"<<endl<<"4. Producto Vectorial"<<endl<<"5. Atras"<<endl<<"Opcion: ";
+	cin>>opcion;
+
+
+	// Detectar caracter
+	if(cin.fail()){
+
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		return -1;
+
+	} else{
+
+		return opcion;
+
+	}
+}
+
+int menuMatrices(){
+	int opcion;
+
+	cout<<"----- MENU MATRICES -----"<<endl<<endl;
+	cout<<"1. Suma y Resta"<<endl<<"2. Multiplicacion por escalar"<<endl<<"3. Multiplicacion"<<endl<<"4. Averiguar Determinante"<<endl<<"5. Averiguar Inversa"<<endl<<"6. Division"<<endl<<"7. Atras"<<endl<<"Opcion: ";
+	cin>>opcion;
+
+
+	// Detectar caracter
+	if(cin.fail()){
+
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		return -1;
+
+	} else{
+
+		return opcion;
+
+	}
+}
+
+int menuSistemas(){
+	int opcion;
+
+	cout<<"----- MENU SISTEMAS -----"<<endl<<endl;
+	cout<<"1. Sistema 2x2"<<endl<<"2. Sistema 3x3"<<endl<<"3. Atras"<<endl<<"Opcion: ";
+	cin>>opcion;
+
+
+	// Detectar caracter
+	if(cin.fail()){
+
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		return -1;
+
+	} else{
+
+		return opcion;
+
+	}
 }
 
 
