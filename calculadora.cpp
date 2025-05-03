@@ -14,6 +14,7 @@ Gennuso Santino.
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <string>
 
 
 using namespace std;
@@ -30,6 +31,8 @@ struct Resultado2x2{
 
 // FUNCIONES PROTOTIPADOS
 
+string floatLimit(float numero);
+
 // ----- Punto 1 - Operaciones Básicas
 
 
@@ -38,18 +41,17 @@ struct Resultado2x2{
 
 
 
-// ----- Punto 2 - Operaciones con Matrices
+// ----- Punto 3 - Operaciones con Matrices
 
-
+void sumarestamatrices();
+void multiplicarporescalar();
+void multiplicarmatrices();
+void multiplicarporescalarv();
 
 // ----- Punto 4 - Sistemas de ecuación.
 
 void sistema2x2();
 void sistema3x3();
-void sumarestamatrices();
-void multiplicarporescalar();
-void multiplicarmatrices();
-void multiplicarporescalarv();
 char PosToChar(int numero);
 
 
@@ -61,8 +63,8 @@ int main(){
 
 	// Proceso
 
-	//sistema3x3(); test
-	//sistema2x2(); test
+	//sistema3x3(); Funcionando correctamente
+	//sistema2x2(); Funcionando correctamente
 	//sumarestamatrices(); Funcionando correctamente
 	//multiplicarporescalar(); Funcionando correctamente
 	//multiplicarmatrices(); Funcionando correctamente
@@ -73,6 +75,22 @@ int main(){
 }
 
 // Funciones
+
+string floatLimit(float numero) {
+
+    string num = to_string(numero);
+
+    while (!num.empty() && num.back() == '0') {
+        num.pop_back();
+    }
+
+    if (!num.empty() && num.back() == '.') {
+        num.pop_back();
+    }
+
+    return num;
+}
+
 
 // ----- Punto 1 - Operaciones Básicas
 
@@ -320,7 +338,7 @@ void sistema2x2(){
 		resultado.y = Dy / D;
 
 		cout<<fixed<< setprecision(4);
-		cout<<"X = "<<resultado.x<<endl<<"Y = "<<resultado.y<<endl;
+		cout<<"X = "<<floatLimit(resultado.x)<<endl<<"Y = "<<floatLimit(resultado.y)<<endl;
 	}
 }
 
@@ -356,8 +374,8 @@ void sistema3x3(){
 			 + (matriz[3][1]*matriz[1][2] - matriz[3][2]*matriz[1][1]) * matriz[2][0];
 
 	float Dy = (matriz[3][1]*matriz[2][2] - matriz[3][2]*matriz[2][1]) * matriz[0][0]
-			 - (matriz[0][1]*matriz[2][2] - matriz[0][2]*matriz[2][1]) * matriz[3][0]
-			 + (matriz[0][1]*matriz[1][2] - matriz[0][2]*matriz[3][1]) * matriz[2][0];
+         	 - (matriz[0][1]*matriz[2][2] - matriz[0][2]*matriz[2][1]) * matriz[3][0]
+         	 + (matriz[0][1]*matriz[3][2] - matriz[0][2]*matriz[3][1]) * matriz[2][0];
 
 	float Dz = (matriz[1][1]*matriz[3][2] - matriz[1][2]*matriz[3][1]) * matriz[0][0]
 			 - (matriz[0][1]*matriz[3][2] - matriz[0][2]*matriz[3][1]) * matriz[1][0]
@@ -374,8 +392,7 @@ void sistema3x3(){
 		resultado.y = Dy / D;
 		resultado.z = Dz / D;
 
-		cout<<fixed<< setprecision(4);
-		cout<<"X = "<<resultado.x<<endl<<"Y = "<<resultado.y<<endl<<"Z = "<<resultado.z<<endl;
+		cout<<"X = "<<floatLimit(resultado.x)<<endl<<"Y = "<<floatLimit(resultado.y)<<endl<<"Z = "<<floatLimit(resultado.z)<<endl;
 	}
 	
 }
