@@ -16,6 +16,7 @@ Gennuso Santino.
 #include <vector>
 #include <string>
 #include <limits>
+#include <math.h>
 
 
 using namespace std;
@@ -44,7 +45,12 @@ int menuSistemas();
 
 // ----- Punto 1 - Operaciones Básicas
 
-
+void suma();
+void resta();
+void multiplicacion();
+void division();
+void potencia();
+void raiz();
 
 // ----- Punto 2 - Operaciones Con Vectores
 
@@ -81,26 +87,27 @@ int main(){
 			switch(menuOperaciones()){
 
 			case 1:
+				suma();
 				break;
 
 			case 2:
-
+				resta();
 				break;
 
 			case 3:
-
+				multiplicacion();
 				break;
 
 			case 4:
-
+				division();
 				break;
 
 			case 5:
-
+				potencia();
 				break;
 
 			case 6:
-
+				raiz();
 				break;
 
 			case 7:
@@ -353,7 +360,122 @@ int menuSistemas(){
 
 // ----- Punto 1 - Operaciones Básicas
 
+void suma(){
+	//variables
+	float a,b,suma;
+	
+	//ingreso de datos
+	cout<<"ingresa el primer numero: ";
+	cin>>a;
+	cout<<"ingresa el segundo numero: ";
+	cin>>b;
+	
+	//proceso matematico
+	suma = a + b;
+	
+	//resultado
+	cout<<"el resultado es: "<<suma<<endl;
+	
+}
 
+void resta(){
+	//variables
+	float a,b,resta;
+	
+	//ingreso de datos
+	cout<<"ingresa el primer numero: ";
+	cin>>a;
+	cout<<"ingresa el segundo numero: ";
+	cin>>b;
+	
+	//proceso matematico
+	resta = a - b;
+	
+	//resultado
+	cout<<"el resultado es: "<<resta<<endl;
+	
+}
+
+void multiplicacion(){
+	//variables
+	float a,b,multi;
+	
+	//ingreso de datos
+	cout<<"ingresa el primer numero: ";
+	cin>>a;
+	cout<<"ingresa el segundo numero: ";
+	cin>>b;
+	
+	//proceso matematico
+	multi = a * b;
+	
+	//resultado
+	cout<<"el resultado es: "<<multi<<endl;
+	
+}
+
+void division(){
+	//variables
+	float a,b,divi;
+	
+	//ingreso de datos
+	cout<<"ingresa el primer numero: ";
+	cin>>a;
+	cout<<"ingresa el segundo numero: ";
+	cin>>b;
+	
+	//proceso matematico
+	
+	if(b == 0){
+	cout<<"el divisor no puede ser 0"<<endl;
+	return;
+	}
+	
+	divi = a / b;
+	
+	
+
+	
+	//resultado
+	cout<<"el resultado es: "<<divi<<endl;
+	
+}
+
+void potencia(){
+	//variables
+	float a,b,po;
+	
+	//ingreso de datos
+	cout<<"ingresa el primer numero: ";
+	cin>>a;
+	cout<<"ingresa el segundo numero: ";
+	cin>>b;
+	
+	//proceso matematico
+	po = pow(a,b);
+	
+	//resultado
+	cout<<"el resultado es: "<<po<<endl;
+	
+}
+
+void raiz(){
+	//variables
+	float a,b,r;
+	
+	//ingreso de datos
+	cout<<"ingresa el primer numero: ";
+	cin>>a;
+	cout<<"ingresa el segundo numero: ";
+	cin>>b;
+	
+	//proceso matematico
+	r = pow(a,1/b);
+	
+	//resultado
+	cout<<"el resultado es: "<<r<<endl;
+	
+}
 
 // ----- Punto 2 - Operaciones Con Vectores
 
