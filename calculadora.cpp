@@ -551,6 +551,16 @@ void multiplcarporescalarv(){
 	}
 }
 
+void determinantematriz(){
+	//Variables
+	//Aclaracion
+	//Ingreso de datos
+	
+	//Proceso matematico
+	
+	//Resultado
+	
+}
 
 // ----- Punto 4 - Sistemas de ecuación.
 
