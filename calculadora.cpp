@@ -711,7 +711,7 @@ void sumarestamatrices(){ // No funciona correctamente
 	for(int i=0; i<limite0; i++){
 		for(int j=0; j<limite1; j++){
 			cout<<"Ingrese elemento "<<i<<" de la columna "<<j<<endl;
-			cin>>matriz1[i][j]; 
+			cin>>matriz2[i][j]; 
 		}
 	}
 
