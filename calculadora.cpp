@@ -54,6 +54,12 @@ void raiz();
 
 // ----- Punto 2 - Operaciones Con Vectores
 
+void ingresoVector(vector<float>& vector);
+void sumaVectores();
+void restaVectores();
+void multiplicarporescalarv();
+void productoEscalar();
+void productoVectorial();
 
 
 // ----- Punto 3 - Operaciones con Matrices
@@ -61,7 +67,6 @@ void raiz();
 void sumarestamatrices();
 void multiplicarporescalar();
 void multiplicarmatrices();
-void multiplicarporescalarv();
 
 // ----- Punto 4 - Sistemas de ecuación.
 
@@ -79,6 +84,8 @@ int main(){
 	bool terminado = false;
 
 	// Proceso
+
+	//sumarestamatrices(); *
 
 	do{
 		switch(menu()){
@@ -123,22 +130,26 @@ int main(){
 			switch(menuVectores()){
 
 			case 1:
-
+				sumaVectores();
 				break;
 
 			case 2:
-
+				restaVectores();
 				break;
 
 			case 3:
-
+				multiplicarporescalarv();
 				break;
 
 			case 4:
-
+				productoEscalar();
 				break;
 
 			case 5:
+				productoVectorial();
+				break;
+
+			case 6:
 				// Volver
 				break;
 
@@ -163,11 +174,11 @@ int main(){
 				break;
 
 			case 4:
-
+				
 				break;
 
 			case 5:
-
+				
 				break;
 
 			case 6:
@@ -213,13 +224,6 @@ int main(){
 		}
 
 	}while(!terminado);
-
-	//sistema3x3(); Funcionando correctamente
-	//sistema2x2(); Funcionando correctamente
-	//sumarestamatrices(); Funcionando correctamente
-	//multiplicarporescalar(); Funcionando correctamente
-	//multiplicarmatrices(); Funcionando correctamente
-	//multiplicarporescalarv(); Funcionando correctamente
 
 	system("pause");
 	return 0;
@@ -295,7 +299,7 @@ int menuVectores(){
 	int opcion;
 
 	cout<<"----- MENU VECTORES -----"<<endl<<endl;
-	cout<<"1. Suma y Resta"<<endl<<"2. Multiplicacion por Escalar"<<endl<<"3. Producto Escalar"<<endl<<"4. Producto Vectorial"<<endl<<"5. Atras"<<endl<<"Opcion: ";
+	cout<<"1. Suma"<<endl<<"2. Resta"<<endl<<"3. Multiplicacion por Escalar"<<endl<<"4. Producto Escalar"<<endl<<"5. Producto Vectorial"<<endl<<"6. Atras"<<endl<<"Opcion: ";
 	cin>>opcion;
 
 
@@ -419,22 +423,19 @@ void division(){
 	float a,b,divi;
 	
 	//ingreso de datos
-	cout<<"ingresa el primer numero: ";
+	cout<<"ingrese el numerador: ";
 	cin>>a;
-	cout<<"ingresa el segundo numero: ";
+	cout<<"ingrese el divisor: ";
 	cin>>b;
 	
 	//proceso matematico
 	
 	if(b == 0){
-	cout<<"el divisor no puede ser 0"<<endl;
+	cout<<"No se puede dividir por 0."<<endl;
 	return;
 	}
 	
 	divi = a / b;
-	
-	
-
 	
 	//resultado
 	cout<<"el resultado es: "<<divi<<endl;
@@ -446,9 +447,9 @@ void potencia(){
 	float a,b,po;
 	
 	//ingreso de datos
-	cout<<"ingresa el primer numero: ";
+	cout<<"ingrese el numero: ";
 	cin>>a;
-	cout<<"ingresa el segundo numero: ";
+	cout<<"ingrese el indice de la potencia: ";
 	cin>>b;
 	
 	//proceso matematico
@@ -460,13 +461,14 @@ void potencia(){
 }
 
 void raiz(){
+
 	//variables
 	float a,b,r;
 	
 	//ingreso de datos
-	cout<<"ingresa el primer numero: ";
+	cout<<"ingrese el numero: ";
 	cin>>a;
-	cout<<"ingresa el segundo numero: ";
+	cout<<"ingrese el indice de la raiz: ";
 	cin>>b;
 	
 	//proceso matematico
@@ -479,11 +481,202 @@ void raiz(){
 
 // ----- Punto 2 - Operaciones Con Vectores
 
+void ingresoVector(vector<float>& vector){
 
+	for(int i = 0; i < vector.size(); i++){
+
+		cout<<"Ingrese el numero "<<i+1<<": ";
+		cin>>vector[i];
+
+	}
+	cout<<endl;
+
+}
+
+void sumaVectores(){
+
+	// Variables
+	int limite;
+
+	// Aclaracion
+	cout<<"Ambos vectores tienen que tener las mismas dimensiones."<<endl<<endl;
+
+	cout<<"Ingrese la dimension de los vectores: ";
+	cin>>limite;
+
+
+	// Vectores
+	vector<float> vector1(limite);
+	vector<float> vector2(limite);
+	vector<float> vectorR(limite);
+
+	// Ingreso de Datos
+	cout<<"Ingrese los valores del primer vector: "<<endl;
+	ingresoVector(vector1);
+
+	cout<<"Ingrese los valores del segundo vector: "<<endl;
+	ingresoVector(vector2);
+
+	// Proceso matematico
+	for(int i = 0; i < limite; i++){
+		vectorR[i] = vector1[i] + vector2[i];
+	}
+
+	// Resultado
+
+	cout<<"El vector resultado es:"<<endl;
+	for(int i = 0; i < limite; i++){
+		cout<<vectorR[i]<<"\t";
+	}
+	cout<<endl;
+
+}
+
+void restaVectores(){
+
+	// Variables
+	int limite;
+
+	// Aclaracion
+	cout<<"Ambos vectores tienen que tener las mismas dimensiones."<<endl<<endl;
+
+	cout<<"Ingrese la dimension de los vectores: ";
+	cin>>limite;
+
+
+	// Vectores
+	vector<float> vector1(limite);
+	vector<float> vector2(limite);
+	vector<float> vectorR(limite);
+
+	// Ingreso de Datos
+	cout<<"Ingrese los valores del primer vector: "<<endl;
+	ingresoVector(vector1);
+
+	cout<<"Ingrese los valores del segundo vector: "<<endl;
+	ingresoVector(vector2);
+
+	// Proceso matematico
+	for(int i = 0; i < limite; i++){
+		vectorR[i] = vector1[i] - vector2[i];
+	}
+
+	// Resultado
+
+	cout<<"El vector resultado es:"<<endl;
+	for(int i = 0; i < limite; i++){
+		cout<<vectorR[i]<<"\t";
+	}
+	cout<<endl;
+
+}
+
+void multiplicarporescalarv(){
+
+	//Variables
+	int limite0=0, esc=0;
+
+	//Ingreso de datos
+	cout<<"Ingrese la dimension del vector"<<endl;
+	cin>>limite0;
+	vector<float> vector(limite0);
+
+	cout<<"Ingrese el numero escalar"<<endl;
+	cin>>esc;
+
+	cout<<"Ingreso de datos del vector"<<endl;
+	for(int i=0; i<limite0; i++){
+			cout<<"Ingrese elemento "<<i<<endl;
+			cin>>vector[i]; 
+	}
+
+	//Proceso matematico
+	for(int j=0; j<limite0;j++){
+			vector[j]=vector[j]*esc;
+	}
+
+	//Resultado
+	cout<<"El resultado es:"<<endl;
+	for(int j=0; j<vector.size();j++){
+			cout<<vector[j]<<"\t";
+	}
+	cout<<endl;
+}
+
+void productoEscalar(){
+
+	// Variables
+	int limite;
+	float resultado = 0;
+
+	// Aclaracion
+	cout<<"Ambos vectores tienen que tener las mismas dimensiones."<<endl<<endl;
+
+	cout<<"Ingrese la dimension de los vectores: ";
+	cin>>limite;
+
+
+	// Vectores
+	vector<float> vector1(limite);
+	vector<float> vector2(limite);
+
+	// Ingreso de Datos
+	cout<<"Ingrese los valores del primer vector: "<<endl;
+	ingresoVector(vector1);
+
+	cout<<"Ingrese los valores del segundo vector: "<<endl;
+	ingresoVector(vector2);
+
+	// Proceso matematico
+
+	for(int i=0; i<limite; i++){
+		resultado+=vector1[i]*vector2[i];
+	}
+
+	// Resultado
+
+	cout<<"El producto escalar de ambos vectores es: "<<resultado<<endl;
+
+}
+
+void productoVectorial(){
+
+	// Variables
+	int limite = 3;
+	// Vectores
+	vector<float> vector1(limite);
+	vector<float> vector2(limite);
+	vector<float> vectorR(limite);
+
+	// Aclaracion
+	cout<<"Ambos vectores tienen dimension 3."<<endl<<endl;
+
+	// Ingreso de Datos
+	cout<<"Ingrese los valores del primer vector: "<<endl;
+	ingresoVector(vector1);
+
+	cout<<"Ingrese los valores del segundo vector: "<<endl;
+	ingresoVector(vector2);
+
+	// Proceso matematico
+
+	vectorR[0]=(vector1[1]*vector2[2])-(vector2[1]*vector1[2]);
+	vectorR[1]=(vector1[2]*vector2[0])-(vector2[2]*vector1[0]);
+	vectorR[2]=(vector1[0]*vector2[1])-(vector2[0]*vector1[1]);
+
+	// Resultado
+
+	cout<<"El vector resultante es: "<<endl;
+	for(int i = 0; i < limite; i++){
+		cout<<vectorR[i]<<"\t";
+	}
+	cout<<endl;
+
+}
 
 // ----- Punto 3 - Operaciones con Matrices
 
-void sumarestamatrices(){
+void sumarestamatrices(){ // No funciona correctamente
 	//Variables
 	int limite0=0, limite1=0, op=0;
 
@@ -511,6 +704,7 @@ void sumarestamatrices(){
 			cin>>matriz1[i][j]; 
 		}
 	}
+
 	cout<<"Ingreso de datos de la segunda matriz"<<endl;
 	for(int i=0; i<limite0; i++){
 		for(int j=0; j<limite1; j++){
@@ -521,24 +715,28 @@ void sumarestamatrices(){
 
 	//Proceso matematico
 	if(op==1){
+
 		for(int j=0; j<limite0;j++){
 			for(int i=0; i<limite1;i++){
-				matrizres[j][i]=matriz1[j][i]+matriz2[j][i];
+				matrizres[j][i] = matriz1[j][i] + matriz2[j][i];
 			}
 		}
+
 	}else{
+
 		for(int j=0; j<limite0;j++){
 			for(int i=0; i<limite1;i++){
-				matrizres[j][i]=matriz1[j][i]-matriz2[j][i];
+				matrizres[j][i] = matriz1[j][i] - matriz2[j][i];
 			}
 		}
+
 	}
 
 	//Resultado
 	cout<<"El resultado es:"<<endl;
 	for(int j=0; j<limite0;j++){
 		for(int i=0; i<limite1; i++){
-			cout<<matrizres[j][i]<<"   ";
+			cout<<matrizres[j][i]<<"\t";
 		}
 		cout<<endl;
 	}
@@ -640,36 +838,6 @@ void multiplicarmatrices(){
 			cout<<matrizres[j][i]<<"   ";
 		}
 		cout<<endl;
-	}
-}
-
-
-
-void multiplcarporescalarv(){
-	//Variables
-	int limite0=0, limite1=0, esc=0;
-	//Aclaracion
-	//Ingreso de datos
-	cout<<"Ingrese la dimension del vector"<<endl;
-	cin>>limite0;
-	vector<float> vector(limite0);
-
-	cout<<"Ingrese el numero escalar"<<endl;
-	cin>>esc;
-
-	cout<<"Ingreso de datos de la matriz"<<endl;
-	for(int i=0; i<limite0; i++){
-			cout<<"Ingrese elemento "<<i<<endl;
-			cin>>vector[i]; 
-	}
-	//Proceso matematico
-	for(int j=0; j<limite0;j++){
-			vector[j]=vector[j]*esc;
-	}
-	//Resultado
-	cout<<"El resultado es:"<<endl;
-	for(int j=0; j<vector.size();j++){
-			cout<<vector[j]<<", ";
 	}
 }
 
