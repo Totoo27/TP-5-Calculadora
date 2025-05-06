@@ -67,6 +67,8 @@ void productoVectorial();
 void sumarestamatrices();
 void multiplicarporescalar();
 void multiplicarmatrices();
+float sacarDet(vector<vector<float>>& matriz, int limite);
+void sacarDeterminante();
 
 // ----- Punto 4 - Sistemas de ecuación.
 
@@ -174,7 +176,7 @@ int main(){
 				break;
 
 			case 4:
-				
+				sacarDeterminante();
 				break;
 
 			case 5:
@@ -839,6 +841,89 @@ void multiplicarmatrices(){
 		}
 		cout<<endl;
 	}
+}
+
+float sacarDet(vector<vector<float>>& matriz, int limite) {
+
+    float resultado = 0;
+
+    if (limite == 1) { // Sacar matriz 1x1
+
+        resultado = matriz[0][0];
+
+    } else if (limite == 2) { // Sacar matriz 2x2
+
+        resultado = matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
+
+    } else { // Sacar matriz NxN si N > 2
+
+        for (int j = 0; j < limite; j++) {
+            
+            vector<vector<float>> submatriz;
+
+            for (int fila = 1; fila < limite; fila++) {
+
+                vector<float> nuevaFila;
+
+                for (int col = 0; col < limite; col++) {
+
+                    if (col != j) {
+                        nuevaFila.push_back(matriz[fila][col]);
+                    }
+
+                }
+
+                submatriz.push_back(nuevaFila);
+
+            }
+
+            float signo;
+			if (j % 2 == 0) {
+    			signo = 1;
+			} else {
+   				signo = -1;
+			}
+
+            resultado += signo * matriz[0][j] * sacarDet(submatriz, limite - 1);
+        }
+
+    }
+
+    return resultado;
+}
+
+void sacarDeterminante(){
+
+	// Variables
+	int limite;
+
+	// Aclaracion
+	cout<<"La matriz debe ser una matriz cuadrada para tener determinante."<<endl;
+
+	// Ingreso Datos
+	cout<<"Ingrese el numero de columnas y filas que tendrá la matriz: ";
+	cin>>limite;
+
+	vector<vector<float>> matriz(limite, vector<float>(limite));
+
+	for(int i = 0; i<limite;i++){
+
+		for(int j = 0; j<limite;j++){
+
+			cout<<"Ingrese el numero de la posicion "<<i<<", "<<j<<": ";
+			cin>>matriz[i][j];
+
+		}
+
+	}
+
+	// Proceso matematico
+
+	float D = sacarDet(matriz, limite);
+
+	// Resultado
+	cout<<endl<<"La determinante de la matriz ingresada es: "<<D<<endl;
+
 }
 
 
