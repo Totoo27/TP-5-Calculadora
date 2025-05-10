@@ -68,6 +68,10 @@ void sumarestamatrices();
 void multiplicarporescalar();
 void multiplicarmatrices();
 float sacarDet(vector<vector<float>>& matriz, int limite);
+bool sacarinversa(vector<vector<float>>& matriz, int limite);
+void sacarAdj(vector<vector<float>>& matriz, int limite);
+void inversamatriz();
+void dividirMatrices();
 void sacarDeterminante();
 
 // ----- Punto 4 - Sistemas de ecuación.
@@ -180,11 +184,12 @@ int main(){
 				break;
 
 			case 5:
+			inversamatriz();
 				
 				break;
 
 			case 6:
-
+			dividirMatrices();
 				break;
 
 			case 7:
@@ -918,7 +923,6 @@ void sacarDeterminante(){
 	}
 
 	// Proceso matematico
-
 	float D = sacarDet(matriz, limite);
 
 	// Resultado
@@ -926,16 +930,184 @@ void sacarDeterminante(){
 
 }
 
-void determinantematriz(){
+void sacarAdj(vector<vector<float>>& matriz, int limite){
+
+	if (limite == 2) {
+        vector<vector<float>> adj(limite, vector<float>(limite));
+        adj[0][0] = matriz[1][1];
+        adj[0][1] = -matriz[0][1];
+        adj[1][0] = -matriz[1][0];
+        adj[1][1] = matriz[0][0];
+        matriz = adj; 
+    } else if (limite > 2) {
+        vector<vector<float>> adj(limite, vector<float>(limite));
+        vector<vector<float>> temp(limite - 1, vector<float>(limite - 1));
+        for (int i = 0; i < limite; i++) {
+        	for (int j = 0; j < limite; j++) {
+                int row = 0;
+    		for (int k = 0; k < limite; k++) {
+            if (k != i) {
+                int col = 0;
+                for (int l = 0; l < limite; l++) {
+                    if (l != j) {
+                        temp[row][col] = matriz[k][l];
+                        col++;
+                    }
+                }
+                row++;
+            }
+        }
+
+        adj[j][i] = pow(-1, i + j) * sacarDet(temp, limite - 1);
+        }
+        }
+        matriz = adj; 
+    }
+
+}
+
+bool sacarinversa(vector<vector<float>>& matriz, int limite){
+	
 	//Variables
-	//Aclaracion
-	//Ingreso de datos
+	vector<vector<float>> temp(limite, vector<float>(limite));
 	
 	//Proceso matematico
+
+	int D = sacarDet(matriz, limite);
+
+	if(D==0){
+		cout<<"No tiene inversa"<<endl;
+		return false;
+	}
+
+	if (limite == 1){
+
+		matriz[0][0] = 1 / matriz[0][0];
 	
-	//Resultado
+	} else{
+
+
+		// Sacar adjunta
+
+		sacarAdj(matriz, limite);
+
+		// Inversa
+
+		for(int i = 0; i < limite; i++){
+			
+			for(int j = 0; j < limite; j++){
+				
+				// Resultado
+				matriz[i][j] /= D;
+
+			}
+
+		}
+
+	}
+	return true;
+
+}
+
+void inversamatriz(){
+	// Variables
+	int limite;
+
+	// Aclaracion
+	cout<<"La matriz debe ser una matriz cuadrada para tener determinante."<<endl;
+
+	// Ingreso Datos
+	cout<<"Ingrese el numero de columnas y filas que tendrá la matriz: ";
+	cin>>limite;
+
+	vector<vector<float>> matriz(limite, vector<float>(limite));
+
+	for(int i = 0; i<limite;i++){
+
+		for(int j = 0; j<limite;j++){
+
+			cout<<"Ingrese el numero de la posicion "<<i<<", "<<j<<": ";
+			cin>>matriz[i][j];
+
+		}
+
+	}
+
+	// Proceso matematico
+
+	bool flag = sacarinversa(matriz, limite);
+
+	// Resultado
+	if(flag == true){
+		cout<<endl<<"La matriz inversa es:"<<endl;
+		for(int i=0;i<limite;i++){
+
+			for(int j=0;j<limite;j++){
+
+				cout<<matriz[i][j]<<"\t"; 
+
+			}
+
+			cout<<endl;
+
+		}
+	} else{
+		cout<<"No tiene inversa."<<endl;
+	}
+	
 	
 }
+
+void dividirMatrices() {
+    int filas, columnas;
+
+    cout << "Ingrese la cantidad de filas de las matrices: ";
+    cin >> filas;
+    cout << "Ingrese la cantidad de columnas de las matrices: ";
+    cin >> columnas;
+
+    vector<vector<float>> matriz1(filas, vector<float>(columnas));
+    vector<vector<float>> matriz2(filas, vector<float>(columnas));
+    vector<vector<float>> resultado(filas, vector<float>(columnas));
+
+    cout << "Ingrese los elementos de la primera matriz:" << endl;
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            cout << "Elemento de la fila " << i + 1 << ", columna " << j + 1 << ": "<<endl;
+            cin >> matriz1[i][j];
+        }
+    }
+
+    cout << "Ingrese los elementos de la segunda matriz (divisores):" << endl;
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            cout << "Elemento de la fila" << i + 1 << ", columna " << j + 1 << ": "<<endl;
+            cin >> matriz2[i][j];
+        }
+    }
+
+    // División elemento a elemento
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            if (matriz2[i][j] == 0) {
+                cout << "Error: division por cero en posición [" << i + 1 << "][" << j + 1 << "]." << endl;
+                return;
+            }
+            resultado[i][j] = matriz1[i][j] / matriz2[i][j];
+        }
+    }
+
+    // Mostrar resultado
+    cout << "Resultado de la división de las matrices:" << endl;
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            cout<< resultado[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+
 
 // ----- Punto 4 - Sistemas de ecuación.
 
